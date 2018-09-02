@@ -1,0 +1,105 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="./assets/img/favicon.ico">
+
+    <title>Digi Chatbot - BETA</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="assets/css/starter-template.css" rel="stylesheet" />
+    <link href="assets/css/botchat.css" rel="stylesheet" />
+
+    <!-- Owl Carousel CSS -->
+	<link rel="stylesheet" href="./assets/css/owlcarousel/owl.carousel.min.css">
+	<link rel="stylesheet" href="./assets/css/owlcarousel/owl.theme.default.min.css">
+      
+    <style type="text/css">
+        .user_say{float:right;padding:10px;border-radius:10px;background:#0077e5;color:#fff;margin:3px 0;display:inline-block;}
+        .bot_say{padding:10px;border-radius:10px;background:#f1f0f0;color:#000;margin:3px 0;display:inline-block;max-width:80%;font-family:'Segoe UI',sans-serif;font-size:15px;}
+    </style>
+    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="assets/js/chatbot.js"></script>
+    
+    <script src="assets/js/owl.carousel.js"></script>
+
+        
+	<!--Add code for Google Analytics-->
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-102364148-1', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
+    
+</head>
+
+<body style="background:#fd0 url('http://new.digi.com.my/cs/site_template/digi/images/digi-pattern.png');">
+
+
+	<div id="wc-popup-url" class="wc-popup">
+		<div class="wc-popup-window">
+			<div style="padding: 40px;">
+				<h3>You will be redirected to Digi Website</h3>
+				Do you wish to continue? 
+				<br>
+				<span> 
+					<a id="wc-popup-button-ok" href="http://bot.digi.com.my" target="_blank"><button class="wc-popup-button" onclick="$('#wc-popup-url').fadeOut(200);">Yes</button></a>
+					<button id="wc-popup-button-cancel" class="wc-popup-button" onclick="$('#wc-popup-url').fadeOut(200);" >Cancel</button> 
+				</span>
+			</div>
+		</div>
+	</div>
+
+	<div class="wc-app" id="test123">
+		<div class="wc-chatview-panel">
+			<div class="wc-header">
+				<img src='assets/img/digi-avatar.png'>
+				<button id="TopButton" class="wc-header-menu">Chatbot in Training</button>
+			</div>
+			<div class="wc-message-pane show-actions">
+				<div id="message-groups-id" class="wc-message-groups">
+					<div id="answer" class="wc-message-group-content" style="overflow:scroll !important">					
+						<img src="http://bot.digi.com.my/images/start-logo.PNG" style="margin-top: 501px;">
+					</div>
+				</div>
+				<div id="wc-suggested-actions-id" class="wc-suggested-actions">
+				</div>
+
+			</div>
+
+			<div class="wc-console">
+				<div class="wc-textbox">
+					<input id="input" type="text" class="wc-shellinput" placeholder="Type a message ...">
+				</div>
+				<label class="wc-send" id="submit_input">
+					<svg><path d="M2.01 21l20.99-9-20.99-9-.01 7 15 2-15 2z"></path></svg>
+				</label>
+		</div>
+	</div>
+</div>
+</body>
+</html>
