@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title>Digi Chatbot Dashboard</title>
+
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+
+    <!-- Bootstrap core CSS     -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Animation library for notifications   -->
+    <link href="assets/css/animate.min.css" rel="stylesheet"/>
+
+    <!--  Light Bootstrap Table core CSS    -->
+    <link href="assets/css/light-bootstrap-dashboard.css" rel="stylesheet"/>
+
+
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="assets/css/demo.css" rel="stylesheet" />
+
+
+    <!--     Fonts and icons     -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+    <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+
+    <!--     JQuery & JQuery UI     -->
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.min.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>	
+
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="sidebar" data-color="black">
+
+    <!--
+        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
+        Tip 2: you can also add an image using data-image tag
+    -->
+
+    	<div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="#" class="simple-text">
+                    Analytics
+                </a>
+            </div>
+
+            <ul class="nav">
+                <li>
+                    <a href="index.html">
+                        <i class="pe-7s-users"></i>
+                        <p>Chatbot CMS</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="rates.html">
+                        <i class="pe-7s-cash"></i>
+                        <p>IDD 133 Rates</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="dashboard.html">
+                        <i class="pe-7s-display1"></i>
+                        <p>KPI</p>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href=#>
+                        <i class="pe-7s-users"></i>
+                        <p>Chat Analysis</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="performance.html">
+                        <i class="pe-7s-rocket"></i>
+                        <p>Performance</p>
+                    </a>
+                </li>
+                <!-- <li>
+                    <a href="userengagement.html">
+                        <i class="pe-7s-news-paper"></i>
+                        <p>User Engagement</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="sentimentanalysis.html">
+                        <i class="pe-7s-like2"></i>
+                        <p>Sentiment Analysis</p>
+                    </a>
+                </li> -->
+                <!-- <li>
+                    <a href="logout.html">
+                        <i class="pe-7s-left-arrow"></i>
+                        <p>Log Out</p>
+                    </a>
+                </li> -->
+            </ul>
+    	</div>
+    </div>
+
+    <div class="main-panel">
+        <nav class="navbar navbar-default navbar-fixed">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Chat Analysis</a>
+                </div>
+            </div>
+        </nav>
+
+
+
+        <div class="content" style="min-height:0px">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">
+                                    Duration
+                                </h4>
+							</div>
+                            <div>
+                            	<h5>
+									<select style="margin-left:20px;padding:0 10px;" id="selected_date">
+										<option value="Today">Today</option>
+										<option value="Yesterday">Yesterday</option>
+										<option value="Past 7 Days">Past 7 Days</option>
+										<option value="Past 30 Days">Past 30 Days</option>             
+									</select>
+									<label for="from">Date</label>
+									<input type="text" id="date_start" name="from">
+									<label for="to">to</label>
+									<input type="text" id="date_end" name="to">
+									<label id="update_user_report" class="btn btn-round btn-fill btn-info">Update</label>
+								</h5>
+                            </div>
+                            <div class="content all-icons">
+                                <div class="row" style="margin-left:0;">
+                                    <div class="row">
+                                        <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                            <div class="font-icon-detail">
+                                                <span id="users_summary" class="bignumber"></span>
+                                                <input type="text" value="Users">
+                                            </div>
+                                        </div>
+                                        <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                            <div class="font-icon-detail">
+                                                <span id="user_messages"  class="bignumber"></span>
+                                                <input type="text" value="NLP Messages">
+                                            </div>
+                                        </div>
+<!--
+                                        <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                            <div class="font-icon-detail">
+                                                <span id="cached_intents" class="bignumber"></span>
+                                                <input type="text" value="NLP Cached">
+                                            </div>
+                                        </div>
+                                        <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                            <div class="font-icon-detail">
+                                                <span id="total_intents" class="bignumber"></span>
+                                                <input type="text" value="NLP Requests">
+                                            </div>
+                                        </div>
+                                        <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                            <div class="font-icon-detail">
+                                                <span id="intents_unrecognized" class="bignumber"></span>
+                                                <input type="text" value="NLP Not Recognzied">
+                                            </div>
+                                        </div>
+                                        <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6">
+                                            <div class="font-icon-detail">
+                                                <span id="abandoned_chats" class="bignumber"></span>
+                                                <input type="text" value="Abandoned Chats">
+                                            </div>
+                                        </div>
+-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content" style="min-height:0px">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title" id="chat_list_header">
+                                    Chat List
+                                </h4>
+							</div>
+                            <div>
+                            	<h5>
+									<select style="margin-left:20px;padding:0 10px;" id="chat_id_dropdown">
+										<option value="Today">All</option>
+									</select>
+								</h5>
+                            	<h5>
+									<select style="margin-left:20px;padding:0 10px;" id="dialog_type_dropdown">
+										<option value="All">All</option>
+										<option value="User Text">Input-Response Table</option>
+									</select>
+								</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+                        
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Chat Messages</h4>
+								<div class="content table-responsive table-full-width">
+									<table id="list_of_chat_id" class="table table-hover ">
+									</table>
+								</div>
+							</div>
+                        </div>
+                    </div>
+				</div>
+            </div>
+        </div>  
+
+    </div>
+</div>
+
+
+</body>
+
+    <!--   Core JS Files   -->
+	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+
+	<!--  Checkbox, Radio & Switch Plugins -->
+	<script src="assets/js/bootstrap-checkbox-radio-switch.js"></script>
+
+	<!--  Charts Plugin -->
+	<script src="assets/js/chartist.min.js"></script>
+
+    <!--  Notifications Plugin    -->
+    <script src="assets/js/bootstrap-notify.js"></script>
+
+	<script src="assets/js/light-bootstrap-dashboard.js"></script>
+
+	<script src="assets/js/bothelper.js"></script>
+
+	<script type="text/javascript">
+    	$(document).ready(function(){
+			$("#date_start").val(getDate());
+			$("#date_end").val(getDate());
+			get_bot_message_stats();
+			get_bot_chat_id_list();	
+			$("#dialog_type_dropdown").prop("disabled", true);
+		
+			$('#selected_date').change(function(){
+				var start_date=0, end_date=0;
+				if($(this).val()=='Today') {
+					start_date = getDate();
+					end_date = getDate();
+				} else if($(this).val()=='Yesterday') {
+					start_date = getDate(-1);
+					end_date = getDate(-1);
+				} else if($(this).val()=='Past 7 Days') {
+					start_date = getDate(-6);
+					end_date = getDate();
+				} else if($(this).val()=='Past 30 Days') {
+					start_date = getDate(-29);
+					end_date = getDate();
+				}
+				$("#date_start").val(start_date);
+				$("#date_end").val(end_date);
+				get_bot_message_stats($("#date_start").val(),$("#date_end").val());
+				get_bot_chat_id_list($("#date_start").val(),$("#date_end").val());
+			});
+			$("#update_user_report").click(function(){
+				get_bot_message_stats($("#date_start").val(),$("#date_end").val());
+				get_bot_chat_id_list($("#date_start").val(),$("#date_end").val());
+			});
+
+			$("#chat_id_dropdown").change(function(){
+				get_bot_message_by_chat_id($("#chat_id_dropdown").val());
+			});			
+
+			$("#dialog_type_dropdown").change(function(){
+				get_bot_message_by_chat_id($("#chat_id_dropdown").val());
+			});			
+
+			
+		});
+	</script>
+
+</html>

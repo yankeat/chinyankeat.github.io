@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title>Digi Chatbot Admin</title>
+
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+
+    <link rel="stylesheet" href="https://yankeat-digital.azurewebsites.net/botadmin/assets/css/jqcloud.css">
+
+    <!-- Bootstrap core CSS     -->
+    <link href="https://yankeat-digital.azurewebsites.net/botadmin/assets/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Animation library for notifications   -->
+    <link href="https://yankeat-digital.azurewebsites.net/botadmin/assets/css/animate.min.css" rel="stylesheet" />
+
+    <!--  Light Bootstrap Table core CSS    -->
+    <link href="https://yankeat-digital.azurewebsites.net/botadmin/assets/css/light-bootstrap-dashboard.css" rel="stylesheet" />
+
+
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="https://yankeat-digital.azurewebsites.net/botadmin/assets/css/demo.css" rel="stylesheet" />
+
+
+    <!--     Fonts and icons     -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+    <link href="https://yankeat-digital.azurewebsites.net/botadmin/assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+
+    <!--     JQuery & JQuery UI     -->
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.min.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>	
+
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="sidebar" data-color="black">
+
+    <!--
+        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
+        Tip 2: you can also add an image using data-image tag
+    -->
+
+    	<div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="#" class="simple-text">
+                    Analytics
+                </a>
+            </div>
+
+            <ul class="nav">
+                <li>
+                    <a href="index.html">
+                        <i class="pe-7s-users"></i>
+                        <p>Chatbot CMS</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="rates.html">
+                        <i class="pe-7s-cash"></i>
+                        <p>IDD 133 Rates</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="dashboard.html">
+                        <i class="pe-7s-display1"></i>
+                        <p>KPI</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="chatanalysis.html">
+                        <i class="pe-7s-users"></i>
+                        <p>Chat Analysis</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="performance.html">
+                        <i class="pe-7s-rocket"></i>
+                        <p>Performance</p>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href=#>
+                        <i class="pe-7s-news-paper"></i>
+                        <p>User Engagement</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="sentimentanalysis.html">
+                        <i class="pe-7s-like2"></i>
+                        <p>Sentiment Analysis</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="logout.html">
+                        <i class="pe-7s-left-arrow"></i>
+                        <p>Log Out</p>
+                    </a>
+                </li>
+            </ul>
+    	</div>
+    </div>
+
+    <div class="main-panel">
+        <nav class="navbar navbar-default navbar-fixed">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">User Engagement</a>
+                </div>
+            </div>
+        </nav>
+
+
+        <div class="content" style="min-height:0px">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">
+                                    Duration
+                                </h4>
+							</div>
+                            <div>
+                            	<h5>
+									<select style="margin-left:20px;padding:0 10px;" id="selected_date">
+										<option value="Today">Today</option>
+										<option value="Yesterday">Yesterday</option>
+										<option value="Past 7 Days">Past 7 Days</option>
+										<option value="Past 30 Days">Past 30 Days</option>             
+									</select>
+									<label for="from">Date</label>
+									<input type="text" id="date_start" name="from">
+									<label for="to">to</label>
+									<input type="text" id="date_end" name="to">
+									<label id="update_user_report" class="btn btn-round btn-fill btn-info">Update</label>
+								</h5>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+
+<!-- START OF DASHBOARD CONTENT -->
+        <div class="content" style="min-height:0px">
+            <div class="container-fluid">
+
+                <div class="row">
+                   
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Keywords</h4>
+							</div>
+                            <div class="content">
+                                <div class="footer">
+                                    <div id="cloud" style="width: 400px;height: 300px;"></div>
+                                    <hr />
+                                    <div class="stats">
+                                        <i class="fa fa-history"></i> Updated 1 day ago
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Conversations</h4>
+                            </div>
+                            <div class="content">
+                                <div id="cloud_conversations" style='width:70%'></div>
+                                <div class="footer">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+ 
+
+    </div>
+</div>
+
+
+</body>
+
+
+
+    <script src="https://yankeat-digital.azurewebsites.net/botadmin/assets/js/jqcloud.js"></script>
+
+    <!--   Core JS Files   -->
+	<script src="https://yankeat-digital.azurewebsites.net/botadmin/assets/js/bootstrap.min.js" type="text/javascript"></script>
+
+	<!--  Checkbox, Radio & Switch Plugins -->
+	<script src="https://yankeat-digital.azurewebsites.net/botadmin/assets/js/bootstrap-checkbox-radio-switch.js"></script>
+
+	<!--  Charts Plugin -->
+	<script src="https://yankeat-digital.azurewebsites.net/botadmin/assets/js/chartist.min.js"></script>
+
+    <!--  Notifications Plugin    -->
+    <script src="https://yankeat-digital.azurewebsites.net/botadmin/assets/js/bootstrap-notify.js"></script>
+
+	<script src="https://yankeat-digital.azurewebsites.net/botadmin/assets/js/light-bootstrap-dashboard.js"></script>
+
+	<script src="https://yankeat-digital.azurewebsites.net/botadmin/assets/js/bothelper.js"></script>
+
+	<script type="text/javascript">
+        $(document).ready(function () {
+
+			$("#date_start").val(getDate());
+			$("#date_end").val(getDate());
+			
+            var $c = $('#cloud');
+            $('#cloud').jQCloud(words);
+            var words = [];
+			
+			function update_text_mining() {
+                command = {};
+                command["command"] = "textm_queue";
+
+				$.ajax({
+                    type: "POST",
+                    url: 'https://yankeat-digital.azurewebsites.net/action.ashx?action=json',
+                    data: {
+                        data: JSON.stringify(command)
+                    },
+                    cache: false,
+                    async: true,
+                    timeout: 10000,
+                    success: function (data) {
+                        console.log("update_text_mining success");
+                    },
+                    error: function (data) {
+                        console.log("update_text_mining error");
+                    }
+                });
+			}
+
+            function textm_get_keyword_occurance() {
+                command = {};
+                command["command"] = "textm_get_keyword_occurance";
+                command["start_date"] = $("#date_start").val();
+                command["end_date"] = $("#date_end").val();
+
+				$.ajax({
+                    type: "POST",
+                    url: 'https://yankeat-digital.azurewebsites.net/action.ashx?action=json',
+                    data: {
+                        data: JSON.stringify(command)
+                    },
+                    cache: false,
+                    async: true,
+                    timeout: 10000,
+                    success: function (data) {
+                        //console.log(data);
+                        
+                        $('#cloud_conversations').empty();
+                        words = [];
+                        $.each(data.results, function (key, value) {
+                            words.push({ text: value.keyword, weight: value.occurance, class: "keyword_select" });
+                        });
+                        $('#cloud').jQCloud('update', words);
+
+                    },
+                    error: function (data) {
+                        console.log("textm_get_keyword_occurance error");
+                        $('#cloud_conversations').empty();
+                    }
+                });
+            }
+
+            function textm_get_negative_sentences() {
+                command = {};
+                command["command"] = "textm_get_negative_sentences";
+
+                $.ajax({
+                    type: "POST",
+                    url: 'https://yankeat-digital.azurewebsites.net/action.ashx?action=json',
+                    data: {
+                        data: JSON.stringify(command)
+                    },
+                    cache: false,
+                    async: true,
+                    timeout: 10000,
+                    success: function (data) {
+                        //console.log(data);
+                        $("#negative_conversations").empty();
+                        var table = '<table class="mainTable">';
+                        $.each(data.results, function (key, value) {
+                            table += ('<tr>');
+                            table += ('<td><b>Remarks:</b> ' + value.remarks + '<br><b>Date:</b> ' + value.created_on + '<br><a class="view_chat" href="#">View Chat</a><hr></td>');
+                            table += ('</tr>');
+                        });
+                        table += '</table>';
+
+                        $("#negative_conversations").html(table);
+                    },
+                    error: function (data) {
+                        //console.log(data);
+                    }
+                });
+            }
+
+            function textm_get_keyword_sentences(keyword) {
+                command = {};
+                command["command"] = "textm_get_keyword_sentences";
+                command["keyword"] = keyword;
+                command["start_date"] = $("#date_start").val();
+                command["end_date"] = $("#date_end").val();
+
+                $.ajax({
+                    type: "POST",
+                    url: 'https://yankeat-digital.azurewebsites.net/action.ashx?action=json',
+                    data: {
+                        data: JSON.stringify(command)
+                    },
+                    cache: false,
+                    async: true,
+                    timeout: 10000,
+                    success: function (data) {
+                        //console.log(data);
+                        $("#cloud_conversations").empty();
+                        var table = '<table class="mainTable">';
+                        $.each(data.results, function (key, value) {
+                            table += ('<tr>');
+                            table += ('<td><b>Remarks:</b> ' + value.remarks + '<br><b>Date:</b> ' + value.created_on + '<br><a class="view_chat" href="#">View Chat</a><hr></td>');
+                            table += ('</tr>');
+                        });
+                        table += '</table>';
+
+                        $("#cloud_conversations").html(table);
+                    },
+                    error: function (data) {
+                        //console.log(data);
+                    }
+                });
+            }
+			update_text_mining();
+            textm_get_keyword_occurance();
+
+
+			$('#selected_date').change(function(){
+				var start_date=0, end_date=0;
+				if($(this).val()=='Today') {
+					start_date = getDate();
+					end_date = getDate();
+				} else if($(this).val()=='Yesterday') {
+					start_date = getDate(-1);
+					end_date = getDate(-1);
+				} else if($(this).val()=='Past 7 Days') {
+					start_date = getDate(-6);
+					end_date = getDate();
+				} else if($(this).val()=='Past 30 Days') {
+					start_date = getDate(-29);
+					end_date = getDate();
+				}
+				$("#date_start").val(start_date);
+				$("#date_end").val(end_date);
+				textm_get_keyword_occurance();
+			});
+			
+			
+            $("#update_user_report").on("click", function () {
+                textm_get_keyword_occurance();
+            });
+			
+            $(document).on("click", ".jqcloud-word",function () {
+                textm_get_keyword_sentences($(this).text());
+            });
+
+            $(document).on("click", ".view_chat", function () {
+                alert("You can see full chat here in the future.")
+            });
+
+			
+		});
+	</script>
+
+</html>

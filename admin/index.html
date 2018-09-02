@@ -1,0 +1,391 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Admin Panel - ChatBot</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="assets/css/starter-template.css" rel="stylesheet" />
+    <link href="assets/css/botchat.css" rel="stylesheet" />
+
+    <style type="text/css">
+        #answer div{display:inline-block;width:100%;}
+        .user_say{float:right;padding:10px;border-radius:10px;background:#0077e5;color:#fff;margin:3px 0;display:inline-block;}
+        .bot_say{padding:10px;border-radius:10px;background:#f1f0f0;color:#000;margin:3px 0;display:inline-block;}
+        .view_multiple_answer{text-decoration:underline;cursor:pointer;}
+        .edit_single_answer{text-decoration:underline;cursor:pointer;}
+        .edit_multiple_answer{text-decoration:underline;cursor:pointer;}
+        .delete_single_answer{text-decoration:underline;cursor:pointer;}
+        .delete_multiple_answer{text-decoration:underline;cursor:pointer;}
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="dashboard.html">Analytics</a>
+                <a class="navbar-brand" href="rates.html">Rates</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+<!--                    <li class="active"><a href="dashboard.html">Dashboard</a></li>-->
+<!--                    <li><a href="#about">Synonyms</a></li>-->
+                    <li>
+                        <select id="server" style="padding:5px;margin-top:10px;margin-left:10px;">
+                            <option value="production">Production</option>
+                            <option value="staging">Staging</option>
+                        </select>
+                    </li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-10">
+                <h1>Knowledge Center</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-10">
+                <input id="input" type="text" style="width:70%;padding:10px;" placeholder="Ask a question ..."> <button id="submit" style="padding:10px;width:100px;">Submit</button> <button id="rec" style="padding:10px;width:100px;">Speak</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-5">
+                <h2>Answer</h2>
+                <p id="answer" style="width:100%;height:405px;padding:10px;border:1px solid #ccc;overflow:scroll;"></p>
+            </div>
+            <div class="col-md-5">
+                <div id="exTab2" style="margin-top:21px;">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#1" data-toggle="tab">Simple</a>
+                        </li>
+                        <li class="">
+                            <a href="#2" data-toggle="tab">Debug</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" style="border: 1px solid #ccc;height:405px;">
+                        <div class="tab-pane active" id="1" style="padding:10px;">
+                            <table style="width:100%;">
+                                <tr>
+                                    <td style="border:1px solid #ccc;padding:10px;">
+                                        <h3>From API.AI</h3>
+                                        <b>Intent:</b> <span id="intent"></span>
+                                        <br /><br />
+                                        <b>Topic:</b> <span id="topic"></span>
+                                        <br /><br />
+                                        <b>Subtopic:</b> <span id="subtopic"></span>
+                                        <br /><br />
+                                        <b>Details:</b> <span id="details"></span>
+                                    </td>
+                                    <td style="border:1px solid #ccc;padding:10px;">
+                                        <h3>From Database</h3>
+                                        <b>Intent:</b> <span id="db_intent"></span>
+                                        <br /><br />
+                                        <b>Topic:</b> <span id="db_topic"></span>
+                                        <br /><br />
+                                        <b>Subtopic:</b> <span id="db_subtopic"></span>
+                                        <br /><br />
+                                        <b>Details:</b> <span id="db_details"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <br /><br />
+                                        <input type="checkbox" id="check_intent" class="search_check" /> Intent: <input type="text" id="search_intent" class="search_input" />
+                                        <br />
+                                        <input type="checkbox" id="check_topic" class="search_check" /> Topic: <input type="text" id="search_topic" class="search_input" />
+                                        <br />
+                                        <input type="checkbox" id="check_subtopic" class="search_check" /> Subtopic: <input type="text" id="search_subtopic" class="search_input" />
+                                        <br />
+                                        <input type="checkbox" id="check_details" class="search_check" /> Details: <input type="text" id="search_details" class="search_input" />
+                                        <br />
+                                        <button id="search_answer" class="btn btn-primary">Search answer</button>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+                        <div class="tab-pane" id="2">
+                            <textarea class="response" style="width:100%;" rows="20"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <h2>
+                <button class="btn btn-primary" id="add_single_answer">Add New</button> 
+                Single Answers from Database
+            </h2>
+            <table id="answers" class="table table-bordered"></table>
+        </div>
+
+        <div class="row">
+            <h2><button class="btn btn-primary" id="add_multiple_answer">Add New</button> Multiple Answers from Database</h2>
+            <table id="answers_multiple" class="table table-bordered"></table>
+        </div>
+
+    </div><!-- /.container -->
+    
+    
+    <!-- ADD SINGLE ANSWER Modal -->
+    <div class="modal fade" id="addSingleAnswer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel" rel="">Add Single Answer</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="row form-group">
+                            <label class="control-label col-sm-2">Intent:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="add_s_intent" placeholder="Enter an intent">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="control-label col-sm-2">Topic:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="add_s_entity" placeholder="Enter a topic">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="control-label col-sm-2">Subtopic:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="add_s_entity1" placeholder="Enter a subtopic">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="control-label col-sm-2">Details:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="add_s_entity2" placeholder="Enter a detail">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Answer:</label>
+                            <textarea class="form-control" id="add_s_answer" rows="3" style="width:100%;"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Quick Reply (Button Text):</label>
+                            <textarea class="form-control" id="add_s_quick_reply" rows="2" style="width:100%;"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Quick Reply Value (Button Value):</label>
+                            <textarea class="form-control" id="add_s_quick_reply_value" rows="2" style="width:100%;"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" id="submit_single_answer" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EDIT SINGLE ANSWER Modal -->
+    <div class="modal fade" id="editSingleAnswer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel" rel="">Edit Single Answer ( #<span class="id"></span> )</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="row form-group">
+                            <label class="control-label col-sm-2">Intent:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="s_intent" placeholder="Enter an intent">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="control-label col-sm-2">Topic:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="s_entity" placeholder="Enter a topic">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="control-label col-sm-2">Subtopic:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="s_entity1" placeholder="Enter a subtopic">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="control-label col-sm-2">Details:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="s_entity2" placeholder="Enter a detail">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Answer:</label>
+                            <textarea class="form-control" id="s_answer" rows="3" style="width:100%;"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Quick Reply (Button Text):</label>
+                            <textarea class="form-control" id="s_quick_reply" rows="2" style="width:100%;"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Quick Reply Value (Button Value):</label>
+                            <textarea class="form-control" id="s_quick_reply_value" rows="2" style="width:100%;"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" id="save_single_answer" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADD MULTIPLE ANSWER Modal -->
+    <div class="modal fade" id="addMultipleAnswer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel" rel="">Add Multiple Answer</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="row form-group">
+                            <label class="control-label col-sm-2">Intent:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="add_m_intent" placeholder="Enter an intent">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="control-label col-sm-2">Type:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="add_m_type" placeholder="Enter a type">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="control-label col-sm-2">Image:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="add_m_image" placeholder="Insert an image url">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Title:</label>
+                            <textarea class="form-control" id="add_m_answer" rows="3" style="width:100%;"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Subtitle:</label>
+                            <textarea class="form-control" id="add_m_subtitle" rows="2" style="width:100%;"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Quick Reply (Button Text):</label>
+                            <textarea class="form-control" id="add_m_quick_reply" rows="2" style="width:100%;"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Quick Reply Value (Button Value):</label>
+                            <textarea class="form-control" id="add_m_quick_reply_value" rows="2" style="width:100%;"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" id="submit_multiple_answer" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EDIT MULTIPLE ANSWER Modal -->
+    <div class="modal fade" id="editMultipleAnswer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel" rel="">Edit Multiple Answer ( <span class="intent"></span> - #<span class="id"></span> )</h4>
+                </div>
+                    <div class="modal-body">
+                        <div>
+                            <div class="row form-group">
+                                <label class="control-label col-sm-2">Intent:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="m_intent" placeholder="Enter an intent">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label class="control-label col-sm-2">Type:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="m_type" placeholder="Enter a type">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label class="control-label col-sm-2">Image:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="m_image" placeholder="Insert an image url">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Title:</label>
+                                <textarea class="form-control" id="m_answer" rows="3" style="width:100%;"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Subtitle:</label>
+                                <textarea class="form-control" id="m_subtitle" rows="2" style="width:100%;"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Quick Reply (Button Text):</label>
+                                <textarea class="form-control" id="m_quick_reply" rows="2" style="width:100%;"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Quick Reply Value (Button Value):</label>
+                                <textarea class="form-control" id="m_quick_reply_value" rows="2" style="width:100%;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" id="save_multiple_answer" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="assets/js/chatbot.js"></script>
+</body>
+</html>
