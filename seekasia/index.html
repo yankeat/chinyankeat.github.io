@@ -1,0 +1,159 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="assets/img/favicon.ico">
+
+    <title>Seek - Ad Purchase</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                </button>
+                <div class="navbar-brand">Ad Purchase</div>
+                <a class="navbar-brand" href="admin.html">Admin</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <div class="row">
+            <table id="answers" class="table table-bordered"></table>
+            <button class="btn btn-primary" id="add_order_button">Add New Order</button> 
+            <h2>
+                Check Existing Order
+            </h2>
+            <h4 id="total_price">
+            </h4>
+            <h3>
+                <select style="padding:0 10px;" id="order_company_dropdown">
+                    <option value="Today">Please wait while loading data...</option>
+                </select>
+            </h3>
+            <table id="order_list" class="table table-bordered"></table>
+        </div>
+
+    </div><!-- /.container -->
+
+    <div class="modal fade" id="addOrder" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel" rel="">Add New Order</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="row form-group">
+                            <label class="control-label col-sm-3">Customer Name:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="add_order_customer_name" placeholder="Eg: FORD">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="control-label col-sm-3">Product ID:</label>
+                            <div class="col-sm-9">
+                                <select style="padding:0 10px;" class="form-control" id="add_order_product_id">
+                                    <option value="Loading">Loading</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="control-label col-sm-3">Qty:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="add_order_quantity" placeholder="1, 2...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" id="submit_add_order" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editOrder" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel" rel="">Edit Bundle</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="row form-group">
+                            <label class="control-label col-sm-3">Customer Name:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="s_order_customer_name" placeholder="Eg: FORD">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="control-label col-sm-3">Product ID:</label>
+                            <div class="col-sm-9">
+                                <select style="padding:0 10px;" class="form-control" id="s_order_product_id">
+                                    <option value="Loading">Loading</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="control-label col-sm-3">Quantity:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="s_order_quantity" placeholder="1, 2...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" id="submit_save_order" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="assets/js/seekasia.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            get_customer_list();
+
+        });
+    </script>
+    
+
+</body>
+</html>

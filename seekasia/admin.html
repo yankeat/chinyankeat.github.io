@@ -1,0 +1,341 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="assets/img/favicon.ico">
+
+    <title>Seek - Admin</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                </button>
+                <a class="navbar-brand" href="index.html">Ad Purchase</a>
+                <div class="navbar-brand">Admin</div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <div class="row">
+            <h2>
+                Products
+                <button class="btn btn-primary" id="add_product_button">Add</button> 
+            </h2>
+            <table id="product_list" class="table table-bordered"></table>
+        </div>
+
+        <div class="row">
+            <h2>
+                Bundle Promotion
+                <button class="btn btn-primary" id="add_bundle_button">Add</button> 
+            </h2>
+            <table id="bundle_list" class="table table-bordered"></table>
+        </div>
+    
+        <div class="row">
+            <h2>
+                Discount Promotion
+                <button class="btn btn-primary" id="add_discount_button">Add</button> 
+            </h2>
+            <table id="discount_list" class="table table-bordered"></table>
+        </div>
+        
+        
+
+    </div><!-- /.container -->
+
+    <div class="modal fade" id="addProduct" tabindex="-4" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel" rel="">Add Product</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="row form-group">
+                            <label class="control-label col-sm-3">Product Id:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="add_product_id" placeholder="Eg: classic">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="control-label col-sm-3">Product Name:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="add_product_name" placeholder="Eg: Classic Ad">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="control-label col-sm-3">Price:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="add_price" placeholder="199.99">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" id="submit_add_product" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>    
+
+    <div class="modal fade" id="editProduct" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel" rel="">Edit Product</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="row form-group">
+                            <label class="control-label col-sm-3">Product Id:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="s_product_id" placeholder="Eg: classic">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="control-label col-sm-3">Product Name:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="s_product_name" placeholder="Eg: Classic Ad">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="control-label col-sm-3">Price:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="s_price" placeholder="199.99">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" id="submit_save_product" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+
+    <!-- Modal Dialogs for Bundle Promotions -->
+    <div class="modal fade" id="addBundle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel" rel="">Bundle</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="row form-group">
+                            <label class="control-label col-sm-3">Customer Name:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="add_bundle_customer_name" placeholder="Eg: FORD">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="control-label col-sm-3">Product ID:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="add_bundle_product_id" placeholder="Eg: classic">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="control-label col-sm-3">Bundle Qty:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="add_bundle_qty" placeholder="1, 2...">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="control-label col-sm-3">Qty Charged:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="add_bundle_charge_qty" placeholder="1, 2...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" id="submit_add_bundle" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editBundle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel" rel="">Edit Bundle</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <div class="row form-group">
+                                <label class="control-label col-sm-3">Customer Name:</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="s_bundle_customer_name" placeholder="Eg: FORD">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label class="control-label col-sm-3">Product ID:</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="s_bundle_product_id" placeholder="Eg: classic">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label class="control-label col-sm-3">Bundle Qty:</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="s_bundle_qty" placeholder="1, 2...">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label class="control-label col-sm-3">Qty Charged:</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="s_bundle_charge_qty" placeholder="1, 2...">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" id="submit_save_bundle" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+    
+        <!-- Modal Dialogs for Discounts -->
+
+        <div class="modal fade" id="addDiscount" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel" rel="">Add Discount</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <div class="row form-group">
+                                <label class="control-label col-sm-3">Customer Name:</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="add_discount_customer_name" placeholder="Eg: FORD">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label class="control-label col-sm-3">Product ID:</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="add_discount_product_id" placeholder="Eg: classic">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label class="control-label col-sm-3">Min Qty:</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="add_discount_minimum_qty" placeholder="1, 2...">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label class="control-label col-sm-3">Discounted Price:</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="add_discount_price" placeholder="199.99">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" id="submit_add_discount" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="editDiscount" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel" rel="">Edit Discount</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <div class="row form-group">
+                                <label class="control-label col-sm-3">Customer Name:</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="s_discount_customer_name" placeholder="Eg: FORD">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label class="control-label col-sm-3">Product ID:</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="s_discount_product_id" placeholder="Eg: classic">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label class="control-label col-sm-3">Min Qty:</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="s_discount_minimum_qty" placeholder="1, 2...">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label class="control-label col-sm-3">Discounted Price:</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="s_discount_price" placeholder="199.99">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" id="submit_save_discount" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="assets/js/seekasia.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            get_product_list();
+            get_promotion_list();
+        });
+    </script>
+
+
+</body>
+</html>
