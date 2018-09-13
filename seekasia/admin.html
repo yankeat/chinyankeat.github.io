@@ -1,4 +1,4 @@
-﻿
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,8 +30,8 @@
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                     <span class="sr-only">Toggle navigation</span>
                 </button>
-                <a class="navbar-brand" href="index.html">Ad Purchase</a>
-                <div class="navbar-brand">Admin</div>
+                <a class="navbar-brand" href="index.html">Shopping Cart</a>
+                <div class="navbar-brand">Admin Page</div>
             </div>
         </div>
     </nav>
@@ -75,6 +75,7 @@
                 </div>
                 <div class="modal-body">
                     <div>
+                        <div class="text-danger" id="addProduct_submit_warning" rel=""></div><br>
                         <div class="row form-group">
                             <label class="control-label col-sm-3">Product Id:</label>
                             <div class="col-sm-9">
@@ -112,10 +113,11 @@
                 </div>
                 <div class="modal-body">
                     <div>
+                        <div class="text-danger" id="editProduct_submit_warning" rel=""></div><br>
                         <div class="row form-group">
                             <label class="control-label col-sm-3">Product Id:</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="s_product_id" placeholder="Eg: classic">
+                                <input type="text" class="form-control" id="s_product_id" placeholder="Eg: classic" disabled>
                             </div>
                         </div>
                         <div class="row form-group">
@@ -152,16 +154,20 @@
                 </div>
                 <div class="modal-body">
                     <div>
+                        <div class="text-danger" id="addBundle_submit_warning" rel=""></div><br>
                         <div class="row form-group">
                             <label class="control-label col-sm-3">Customer Name:</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="add_bundle_customer_name" placeholder="Eg: FORD">
                             </div>
-                        </div>
+                        </div>                    
+
                         <div class="row form-group">
                             <label class="control-label col-sm-3">Product ID:</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="add_bundle_product_id" placeholder="Eg: classic">
+                                <select style="padding:0 10px;" class="form-control" id="add_bundle_product_id">
+                                    <option value="Loading">Loading</option>
+                                </select>
                             </div>
                         </div>
                         <div class="row form-group">
@@ -195,16 +201,17 @@
                     </div>
                     <div class="modal-body">
                         <div>
+                        <div class="text-danger" id="editBundle_submit_warning" rel=""></div><br>
                             <div class="row form-group">
                                 <label class="control-label col-sm-3">Customer Name:</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="s_bundle_customer_name" placeholder="Eg: FORD">
+                                    <input type="text" class="form-control" id="s_bundle_customer_name" placeholder="Eg: FORD" disabled>
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <label class="control-label col-sm-3">Product ID:</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="s_bundle_product_id" placeholder="Eg: classic">
+                                    <input type="text" class="form-control" id="s_bundle_product_id" placeholder="Eg: classic" disabled>
                                 </div>
                             </div>
                             <div class="row form-group">
@@ -241,16 +248,19 @@
                     </div>
                     <div class="modal-body">
                         <div>
+                            <div class="text-danger" id="addDiscount_submit_warning" rel=""> </div><br>
                             <div class="row form-group">
                                 <label class="control-label col-sm-3">Customer Name:</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="add_discount_customer_name" placeholder="Eg: FORD">
+                                    <input type="text" class="form-control" id="add_discount_customer_name" placeholder="Eg: FORD" >
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <label class="control-label col-sm-3">Product ID:</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="add_discount_product_id" placeholder="Eg: classic">
+                                    <select style="padding:0 10px;" class="form-control" id="add_discount_product_id">
+                                        <option value="Loading">Loading</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="row form-group">
@@ -284,16 +294,17 @@
                     </div>
                     <div class="modal-body">
                         <div>
+                            <div class="text-danger" id="editDiscount_submit_warning" rel=""></div><br>
                             <div class="row form-group">
                                 <label class="control-label col-sm-3">Customer Name:</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="s_discount_customer_name" placeholder="Eg: FORD">
+                                    <input type="text" class="form-control" id="s_discount_customer_name" placeholder="Eg: FORD" disabled>
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <label class="control-label col-sm-3">Product ID:</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="s_discount_product_id" placeholder="Eg: classic">
+                                    <input type="text" class="form-control" id="s_discount_product_id" placeholder="Eg: classic" disabled>
                                 </div>
                             </div>
                             <div class="row form-group">
